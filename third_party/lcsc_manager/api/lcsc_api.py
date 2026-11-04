@@ -1,0 +1,786 @@
+"""
+LCSC/EasyEDA API Client
+
+This module provides functions to search and fetch component data from LCSC/EasyEDA.
+Note: These APIs are not officially documented and were reverse-engineered.
+"""
+import errno
+import glob
+import json
+import sys
+import requests
+import threading
+import time
+from typing import Dict, List, Optional, Any
+from urllib.parse import urlparse
+from pathlib import Path
+from ..utils.logger import get_logger
+from ..utils.config import get_config
+
+logger = get_logger()
+
+
+def _discover_ca_bundle() -> Optional[str]:
+    """
+    Find a CA bundle path for requests.Session.verify, with preference for
+    KiCad's embedded certifi on macOS. Falls back to the certifi package, then
+    None (system store).
+
+    Adapted from easyeda2kicad.py v1.0.1 _create_ssl_context.
+    """
+    # macOS: KiCad bundles its own certifi inside KiCad.app.
+    # The glob may return several hits per install (e.g. Versions/Current and
+    # Versions/3.9 for the same KiCad.app); the is_file() loop takes the first
+    # valid match. We sort by mtime rather than name because lexicographic
+    # sort treats "KiCad/" (U+002F) as greater than "KiCad 10/" (U+0020),
+    # which would silently pick the older install on machines with multiple
+    # KiCad versions.
+    if sys.platform == "darwin":
+        def _mtime(path: str) -> float:
+            try:
+                return Path(path).stat().st_mtime
+            except OSError:
+                return 0.0
+
+        candidates = sorted(
+            glob.glob(
+                "/Applications/KiCad*/KiCad.app/Contents/Frameworks/"
+                "Python.framework/Versions/*/lib/python*/site-packages/certifi/cacert.pem"
+            ),
+            key=_mtime,
+            reverse=True,  # newest KiCad first (by mtime)
+        )
+        for path in candidates:
+            if Path(path).is_file():
+                logger.debug(f"Using KiCad certifi bundle: {path}")
+                return path
+
+    # Fallback: certifi package if installed
+    try:
+        import certifi
+        bundle = certifi.where()
+        if Path(bundle).is_file():
+            logger.debug(f"Using certifi package bundle: {bundle}")
+            return bundle
+    except ImportError:
+        pass
+
+    return None
+
+
+# Module-level cache: discover the bundle once per process.
+# Empty string ("") means "discovered but none found" — avoids re-running the glob.
+#
+# Thread safety: _get_session may be called from dialog_search.py background
+# threads. The `if _CA_BUNDLE is None: _CA_BUNDLE = ...` pattern is GIL-safe
+# under CPython — in the worst case, two threads race and both assign the same
+# value (harmless duplicate glob work). Intentional: no lock needed.
+_CA_BUNDLE: Optional[str] = None
+
+
+class LCSCAPIError(Exception):
+    """Exception raised for LCSC API errors"""
+    pass
+
+
+class LCSCRateLimitError(LCSCAPIError):
+    """Raised when EasyEDA/JLCPCB throttles us (HTTP 403/429) and retries are
+    exhausted. A subclass of LCSCAPIError so existing handlers still catch it,
+    but distinct so the UI can say "wait and retry" instead of "not found"."""
+    pass
+
+
+def _os_error_in(exc: BaseException) -> Optional[OSError]:
+    """The OSError at the bottom of a requests exception, if any.
+
+    requests wraps the socket error twice: ConnectionError(ProtocolError(
+    "Connection aborted.", PermissionError(13, ...))). Walk args and the
+    cause/context chain to find it."""
+    seen = set()
+    stack = [exc]
+    while stack:
+        e = stack.pop()
+        if id(e) in seen or e is None:
+            continue
+        seen.add(id(e))
+        if isinstance(e, OSError) and e.errno is not None:
+            return e
+        for a in getattr(e, "args", ()):
+            if isinstance(a, BaseException):
+                stack.append(a)
+        stack.append(e.__cause__)
+        stack.append(e.__context__)
+    return None
+
+
+def describe_network_error(exc: BaseException, url: str) -> str:
+    """A message for the user about a failed request: what the OS said and,
+    where the cause is recognisable, what to do about it. (issue #21)"""
+    host = urlparse(url).hostname or url
+    err = _os_error_in(exc)
+    if err is not None and err.errno == errno.EACCES:
+        # On Windows this is WSAEACCES (10013): the socket call was refused
+        # by the OS itself, before anything reached the network. That is a
+        # firewall or antivirus blocking kicad.exe, not the server.
+        return (
+            f"The operating system refused to let KiCad connect to {host} "
+            "(permission denied). A firewall or antivirus program is "
+            "probably blocking KiCad's network access: allow KiCad's "
+            "programs through it, or ask your administrator. If your "
+            "network needs a proxy, set HTTPS_PROXY before starting KiCad. "
+            f"Details: {exc}"
+        )
+    return f"Network error: {exc}"
+
+
+def ca_bundle():
+    """What to pass as `verify=` to requests: the CA bundle found for this
+    machine (KiCad's own certifi on macOS, else the certifi package), or
+    True for the system default. Every download should use it, or it can
+    fail with certificate errors where the API calls work."""
+    global _CA_BUNDLE
+    if _CA_BUNDLE is None:
+        _CA_BUNDLE = _discover_ca_bundle() or ""
+    return _CA_BUNDLE or True
+
+
+class LCSCAPIClient:
+    """Client for interacting with LCSC/EasyEDA APIs"""
+
+    # API Endpoints
+    JLCPCB_SEARCH_URL = "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList"
+
+    # Rate limiting: a minimum gap between requests to the same host. Each
+    # host has its own clock, so fetching a part's EasyEDA data and its
+    # JLCPCB stock info back to back doesn't wait. (Until 0.9.1 every
+    # request waited 5 s after the previous one, whatever the host: 10 s
+    # per part in a BOM.) A host that answers 403/429 gets a longer gap for
+    # the rest of the session.
+    REQUEST_INTERVAL = 0.5          # seconds, per host
+    HOST_INTERVALS = {"jlcpcb.com": 1.0}
+    MAX_REQUEST_INTERVAL = 5.0
+    RETRY_DELAY = 10.0  # seconds to wait before retry on 403
+
+    _rate_lock = threading.Lock()
+    _next_request_at: Dict[str, float] = {}     # host -> monotonic time
+    _host_interval: Dict[str, float] = {}       # host -> current gap
+
+    CACHE_DIR = Path.home() / ".kicad_lcsc_manager_cache"
+
+    def __init__(self):
+        """Initialize LCSC API client"""
+        self.config = get_config()
+        self.use_cache = bool(self.config.get("api_cache_enabled", False))
+        if self.use_cache:
+            self.CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+    def _get_session(self):
+        """Get a fresh session with proper headers for each request"""
+        session = requests.Session()
+        # Apply CA bundle for SSL verification (KiCad-embedded certifi on macOS,
+        # then certifi package, then system default). Discovered once per process.
+        session.verify = ca_bundle()
+        # Use realistic browser headers to avoid API blocking
+        session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'en-US,en;q=0.9,ko;q=0.8',
+            'Referer': 'https://jlcpcb.com/parts',
+            'Origin': 'https://jlcpcb.com',
+            'Sec-Ch-Ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"macOS"',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'DNT': '1',
+        })
+        return session
+
+    @staticmethod
+    def _host(url: str) -> str:
+        return urlparse(url).hostname or ""
+
+    def _interval(self, host: str) -> float:
+        return self._host_interval.get(
+            host, self.HOST_INTERVALS.get(host, self.REQUEST_INTERVAL))
+
+    def _rate_limit(self, url: str):
+        """Wait until this host may be asked again. Safe to call from
+        several threads (previews, imports): each caller reserves the next
+        free slot under the lock, then sleeps outside it."""
+        host = self._host(url)
+        with self._rate_lock:
+            now = time.monotonic()
+            start = max(now, self._next_request_at.get(host, 0.0))
+            self._next_request_at[host] = start + self._interval(host)
+        if start > now:
+            logger.debug(f"Rate limiting {host}: sleeping for {start - now:.2f}s")
+            time.sleep(start - now)
+
+    def _slow_down(self, url: str):
+        """The host is throttling: widen its gap for the rest of the session."""
+        host = self._host(url)
+        with self._rate_lock:
+            wider = min(self.MAX_REQUEST_INTERVAL, max(2.0, self._interval(host) * 2))
+            self._host_interval[host] = wider
+        logger.info(f"Requests to {host} are now spaced {wider:.1f}s apart")
+
+    def _cache_path(self, identifier: str, extension: str = "json") -> Path:
+        """Return cache file path for the given identifier."""
+        safe_id = identifier.replace("/", "_").replace("\\", "_")
+        return self.CACHE_DIR / f"{safe_id}.{extension}"
+
+    def _cache_read(self, path: Path) -> Optional[str]:
+        """Read cached data if caching is enabled and the file exists."""
+        if not self.use_cache or not path.exists():
+            return None
+        try:
+            return path.read_text(encoding="utf-8")
+        except Exception as e:
+            logger.warning(f"Cache read failed ({path}): {e}")
+            return None
+
+    def _cache_write(self, path: Path, data: str) -> None:
+        """
+        Write data to cache if caching is enabled. Silent on failure.
+
+        Uses write-then-rename for atomicity: readers will either see the
+        fully-written file or the old file (if any), never a torn state.
+        Important because search_component runs from background threads.
+        """
+        if not self.use_cache:
+            return
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = path.with_suffix(path.suffix + ".tmp")
+            tmp.write_text(data, encoding="utf-8")
+            tmp.replace(path)
+        except Exception as e:
+            logger.warning(f"Cache write failed ({path}): {e}")
+
+    def _make_request(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict] = None,
+        json_data: Optional[Dict] = None,
+        timeout: Optional[int] = None,
+        retry_count: int = 0,
+        max_retries: int = 3
+    ) -> Dict:
+        """
+        Make HTTP request with error handling and rate limiting
+
+        Args:
+            method: HTTP method (GET, POST, etc.)
+            url: Request URL
+            params: Query parameters
+            json_data: JSON request body
+            timeout: Request timeout in seconds
+            retry_count: Internal retry counter
+            max_retries: How often to wait and retry when rate-limited
+
+        Returns:
+            Response JSON data
+
+        Raises:
+            LCSCAPIError: If request fails
+        """
+        self._rate_limit(url)
+
+        if timeout is None:
+            timeout = self.config.get("api_timeout", 30)
+
+        session = None
+        try:
+            logger.debug(f"{method} {url} params={params}")
+
+            # Get fresh session for each request
+            session = self._get_session()
+
+            # Add Content-Type for POST requests with JSON data
+            headers = {}
+            if method.upper() == "POST" and json_data:
+                headers['Content-Type'] = 'application/json;charset=UTF-8'
+
+            response = session.request(
+                method=method,
+                url=url,
+                params=params,
+                json=json_data,
+                headers=headers,
+                timeout=timeout
+            )
+
+            response.raise_for_status()
+
+            return response.json()
+
+        except requests.exceptions.HTTPError as e:
+            status = e.response.status_code if e.response is not None else None
+            # EasyEDA throttles with 403 Forbidden (and, per HTTP, 429).
+            # Back off and retry before giving up.
+            if status in (403, 429):
+                self._slow_down(url)
+                if retry_count < max_retries:
+                    wait_time = self.RETRY_DELAY * (retry_count + 1)  # Exponential backoff
+                    logger.warning(
+                        f"Got HTTP {status} (rate limited), waiting {wait_time}s "
+                        f"before retry {retry_count + 1}/{max_retries}"
+                    )
+                    if session:
+                        session.close()
+                    time.sleep(wait_time)
+                    return self._make_request(method, url, params, json_data, timeout,
+                                              retry_count + 1, max_retries)
+                logger.error(f"Rate limited (HTTP {status}); retries exhausted")
+                raise LCSCRateLimitError(
+                    "EasyEDA is rate-limiting requests. Wait a few seconds and try again."
+                )
+
+            logger.error(f"HTTP error: {e}")
+            raise LCSCAPIError(f"API request failed: {e}")
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request error: {e}")
+            raise LCSCAPIError(describe_network_error(e, url))
+        except ValueError as e:
+            logger.error(f"JSON decode error: {e}")
+            raise LCSCAPIError(f"Invalid API response: {e}")
+        finally:
+            if session:
+                session.close()
+
+    def _get_jlcpcb_info(self, lcsc_id: str,
+                         swallow_errors: bool = True) -> Optional[Dict[str, Any]]:
+        """
+        Get stock and price information from JLCPCB API
+
+        Args:
+            lcsc_id: LCSC part number (e.g., "C2040")
+            swallow_errors: When True (default), any lookup failure returns
+                None so callers merging optional stock data are unaffected.
+                When False, errors (e.g. LCSCRateLimitError) propagate so a
+                caller can distinguish "lookup failed" from "no such part".
+
+        Returns:
+            Dictionary with stock, price, and datasheet info or None if not found
+        """
+        try:
+            logger.info(f"Fetching JLCPCB stock/price info for: {lcsc_id}")
+
+            response = self._make_request(
+                method="POST",
+                url=self.JLCPCB_SEARCH_URL,
+                json_data={"keyword": lcsc_id},
+                # Stock and price are optional extras when the caller
+                # swallows errors; don't hold an import up for a minute.
+                max_retries=1 if swallow_errors else 3
+            )
+
+            if response.get("code") != 200:
+                logger.warning(f"JLCPCB API returned code: {response.get('code')}")
+                return None
+
+            # Extract component list
+            components = response.get("data", {}).get("componentPageInfo", {}).get("list", [])
+
+            if not components:
+                logger.warning(f"No components found in JLCPCB API")
+                return None
+
+            # Find exact match
+            component = None
+            for c in components:
+                if c.get("componentCode") == lcsc_id:
+                    component = c
+                    break
+
+            if not component:
+                logger.warning(f"Exact match not found in JLCPCB API")
+                return None
+
+            # Extract stock and price info
+            stock = component.get("stockCount", 0)
+            price_list = component.get("componentPrices", [])
+
+            # Parse prices
+            prices = []
+            if price_list:
+                sorted_prices = sorted(price_list, key=lambda p: p.get("startNumber", 0))
+                for price_tier in sorted_prices:
+                    start_qty = price_tier.get("startNumber", 0)
+                    end_qty = price_tier.get("endNumber", -1)
+                    price = price_tier.get("productPrice", 0)
+
+                    prices.append({
+                        "qty": start_qty,
+                        "qty_max": None if end_qty == -1 else end_qty,
+                        "price": price
+                    })
+
+            jlcpcb_info = {
+                "stock": stock,
+                "price": prices,
+                "datasheet": component.get("dataManualUrl", ""),
+                "image": component.get("minImageAccessId", ""),
+                "url": component.get("lcscGoodsUrl", f"https://www.lcsc.com/product-detail/{lcsc_id}.html"),
+                # May have better description
+                "jlcpcb_description": component.get("describe", ""),
+            }
+
+            logger.info(f"JLCPCB info: stock={stock}, prices={len(prices)} tiers")
+            return jlcpcb_info
+
+        except Exception as e:
+            if not swallow_errors:
+                raise
+            logger.warning(f"Failed to fetch JLCPCB info: {e}")
+            return None
+
+    def get_jlcpcb_info(self, lcsc_id: str,
+                        swallow_errors: bool = True) -> Optional[Dict[str, Any]]:
+        """
+        Check whether a part exists in the JLCPCB/LCSC catalog and fetch its
+        stock/price/datasheet info.
+
+        Public wrapper around the internal JLCPCB lookup so dialogs can
+        distinguish "part exists but has no EasyEDA CAD data" from "part does
+        not exist" after search_component() returns None (issue #14).
+
+        Args:
+            lcsc_id: LCSC part number (e.g., "C2040")
+            swallow_errors: When True (default) the lookup never raises and
+                returns None on any failure. Pass False when a None result
+                will be shown to the user as "part does not exist" — then
+                LCSCRateLimitError / LCSCAPIError propagate instead of being
+                conflated with non-existence.
+
+        Returns:
+            Info dictionary (stock, price, datasheet, url, ...) on an exact
+            match, or None when the part is unknown.
+        """
+        return self._get_jlcpcb_info(lcsc_id, swallow_errors=swallow_errors)
+
+    def search_component(self, lcsc_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Search for a component by LCSC part number using EasyEDA and JLCPCB APIs
+
+        Args:
+            lcsc_id: LCSC part number (e.g., "C2040")
+
+        Returns:
+            Component data dictionary or None if not found
+
+        Raises:
+            LCSCAPIError: If search fails
+        """
+        logger.info(f"Searching for component: {lcsc_id}")
+
+        try:
+            # Step 1: Get EasyEDA data (for symbol/footprint), from cache if available
+            cache_path = self._cache_path(f"component_{lcsc_id}")
+            cached = self._cache_read(cache_path)
+            response = None
+            if cached:
+                try:
+                    response = json.loads(cached)
+                    logger.info(f"Cache hit: {lcsc_id}")
+                except json.JSONDecodeError:
+                    logger.warning(f"Invalid cached JSON for {lcsc_id}, refetching")
+                    try:
+                        cache_path.unlink()
+                    except OSError:
+                        pass
+                    response = None
+
+            if response is None:
+                url = f"https://easyeda.com/api/products/{lcsc_id}/components"
+                response = self._make_request(
+                    method="GET",
+                    url=url,
+                    params={"version": "6.4.19.5"},
+                )
+                # Write successful responses to cache for next time
+                if response.get("success"):
+                    self._cache_write(cache_path, json.dumps(response))
+
+            # Parse response
+            if not response.get("success"):
+                logger.warning(f"Component not found in EasyEDA: {lcsc_id}")
+                return None
+
+            result = response.get("result", {})
+            if not result:
+                logger.warning(f"Empty result from EasyEDA: {lcsc_id}")
+                return None
+
+            logger.info(f"Found component in EasyEDA: {lcsc_id}")
+
+            # Extract symbol and footprint UUIDs
+            symbol_uuid = result.get("uuid")
+            footprint_uuid = None
+            if "packageDetail" in result:
+                footprint_uuid = result["packageDetail"].get("uuid")
+
+            # Extract component parameters from dataStr
+            c_para = {}
+            if "dataStr" in result and "head" in result["dataStr"]:
+                c_para = result["dataStr"]["head"].get("c_para", {})
+
+            # Extract LCSC info
+            lcsc_info = result.get("lcsc", {})
+
+            # Create component info with EasyEDA data
+            component_data = {
+                "lcsc_id": lcsc_info.get("number", lcsc_id),
+                "name": c_para.get("name", result.get("title", lcsc_id)),
+                "description": result.get("description") or c_para.get("name", ""),
+                "manufacturer": c_para.get("Manufacturer", "Unknown"),
+                "manufacturer_part": c_para.get("Manufacturer Part", ""),
+                "package": c_para.get("package", "Unknown"),
+                "prefix": c_para.get("pre", "U"),
+                "jlcpcb_class": c_para.get("JLCPCB Part Class", ""),
+                "price": [],
+                "stock": 0,
+                "datasheet": "",
+                "image": result.get("thumb", ""),
+                "url": "",
+                "category": "Electronic Component",
+                "subcategory": "",
+                "symbol_uuid": symbol_uuid,
+                "footprint_uuid": footprint_uuid,
+                "smt": result.get("SMT", False),
+                "easyeda_data": result,
+            }
+
+            # Step 2: Get JLCPCB data (for stock/price)
+            jlcpcb_info = self._get_jlcpcb_info(lcsc_id)
+            if jlcpcb_info:
+                # Merge JLCPCB data
+                component_data["stock"] = jlcpcb_info.get("stock", 0)
+                component_data["price"] = jlcpcb_info.get("price", [])
+                component_data["datasheet"] = jlcpcb_info.get("datasheet", "")
+                component_data["url"] = jlcpcb_info.get("url", "")
+
+                # Use JLCPCB description if EasyEDA description is empty
+                if not component_data["description"] and jlcpcb_info.get("jlcpcb_description"):
+                    component_data["description"] = jlcpcb_info["jlcpcb_description"]
+
+                # Update image if JLCPCB has one
+                if jlcpcb_info.get("image"):
+                    image_id = jlcpcb_info["image"]
+                    component_data["image"] = f"https://assets.jlcpcb.com/attachments/{image_id}"
+
+            logger.info(f"Component complete: {component_data['name']} by {component_data['manufacturer']}, stock={component_data['stock']}")
+            return component_data
+
+        except LCSCAPIError:
+            # Already a typed API error (incl. LCSCRateLimitError) — propagate
+            # as-is so callers can distinguish rate-limiting from other failures.
+            raise
+        except Exception as e:
+            logger.error(f"Search failed for {lcsc_id}: {e}")
+            raise LCSCAPIError(f"Search failed: {e}")
+
+    def advanced_search(
+        self,
+        component_name: str = "",
+        value: str = "",
+        package: str = "",
+        manufacturer: str = "",
+        page: int = 1
+    ) -> List[Dict[str, Any]]:
+        """
+        Advanced component search with multiple parameters using JLCPCB API
+
+        Args:
+            component_name: Component name or description
+            value: Component value (e.g., "10uF", "10k")
+            package: Package size (e.g., "0603", "SOT23")
+            manufacturer: Manufacturer name
+            page: Page number (default: 1)
+
+        Returns:
+            List of component data dictionaries
+
+        Raises:
+            LCSCAPIError: If search fails
+        """
+        # Build query string from non-empty parameters
+        query_parts = []
+        if component_name:
+            query_parts.append(component_name)
+        if value:
+            query_parts.append(value)
+        if package:
+            query_parts.append(package)
+        if manufacturer:
+            query_parts.append(manufacturer)
+
+        if not query_parts:
+            logger.warning("Advanced search called with no parameters")
+            return []
+
+        # Join parts with spaces
+        query = " ".join(query_parts)
+        logger.info(f"Advanced search query: {query}")
+
+        # Use JLCPCB search API
+        return self.search_jlcpcb(query, page)
+
+    def get_component_complete(self, lcsc_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get complete component data including symbol, footprint, and 3D model info
+
+        Args:
+            lcsc_id: LCSC part number
+
+        Returns:
+            Complete component data or None if not found
+
+        Raises:
+            LCSCAPIError: If fetch fails
+        """
+        logger.info(f"Fetching complete data for: {lcsc_id}")
+
+        # Get basic component info from EasyEDA
+        component = self.search_component(lcsc_id)
+        if not component:
+            return None
+
+        # The EasyEDA data is already included in the component from search_component
+        # No need to modify it - it already contains the full API response
+        return component
+
+
+    def search_jlcpcb(self, query: str, page: int = 1, page_size: int = 20) -> List[Dict[str, Any]]:
+        """
+        Search for components using JLCPCB API
+
+        Args:
+            query: Search query
+            page: Page number (default: 1)
+            page_size: Results per page (default: 20)
+
+        Returns:
+            List of component data dictionaries with 'lcsc', 'title', 'package', 'uuid'
+
+        Raises:
+            LCSCAPIError: If search fails
+        """
+        logger.info(f"Searching JLCPCB: {query}, page {page}")
+
+        try:
+            url = "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList"
+
+            response = self._make_request(
+                method="POST",
+                url=url,
+                json_data={
+                    "keyword": query,
+                    "currentPage": page,
+                    "pageSize": page_size
+                }
+            )
+
+            if response.get("code") != 200:
+                logger.warning(f"JLCPCB search failed: {response.get('msg', 'Unknown error')}")
+                return []
+
+            data = response.get("data", {})
+            component_page_info = data.get("componentPageInfo", {})
+            components = component_page_info.get("list", [])
+
+            if not components:
+                logger.info("No components found in JLCPCB search")
+                return []
+
+            logger.info(f"Found {len(components)} components")
+
+            # Convert JLCPCB format to our internal format
+            results = []
+            for comp in components:
+                # The LCSC part number. "componentCode" carries it verbatim;
+                # urlSuffix is the fallback, and comes in two shapes:
+                #   "RaspberryPi-RP2040/C2040"  (brand-model slug + code)
+                #   "C5142652"                  (bare code, no slug)
+                # Requiring a "/" dropped the id for the second shape, which
+                # left the row with a blank LCSC ID, a preview stuck on
+                # "Loading...", and an import that refused to start (issue #17).
+                url_suffix = comp.get("urlSuffix") or ""
+                lcsc_id = (comp.get("componentCode")
+                           or url_suffix.split("/")[-1]).strip()
+
+                # Debug: log available name fields for first component
+                if len(results) == 0 and lcsc_id:
+                    logger.debug(f"Sample component {lcsc_id} name fields:")
+                    logger.debug(f"  componentModelEn: {comp.get('componentModelEn')}")
+                    logger.debug(f"  componentName: {comp.get('componentName')}")
+                    logger.debug(f"  erpComponentName: {comp.get('erpComponentName')}")
+
+                # Get price (first tier price)
+                prices = comp.get("componentPrices", [])
+                price = prices[0].get("productPrice", 0) if prices else 0
+
+                # Get package specification
+                package_spec = comp.get("componentSpecificationEn", "")
+
+                # Get library type (base = Basic, expand = Extended)
+                library_type = comp.get("componentLibraryType", "")
+                if library_type == "base":
+                    type_str = "Basic"
+                elif library_type == "expand":
+                    type_str = "Extended"
+                else:
+                    type_str = ""
+
+                # Create component data in format expected by dialog
+                # Priority for name: componentModelEn > componentName > erpComponentName
+                name = (
+                    comp.get("componentModelEn") or
+                    comp.get("componentName") or
+                    comp.get("erpComponentName", "Unknown")
+                ).strip()
+
+                result = {
+                    "lcsc": {
+                        "number": lcsc_id
+                    },
+                    "title": name,
+                    "package": package_spec,  # Use componentSpecificationEn for package
+                    "description": comp.get("describe", ""),
+                    "uuid": lcsc_id,  # Use LCSC ID as UUID for fetching later
+                    "stockCount": comp.get("stockCount", 0),
+                    "componentId": comp.get("componentId"),
+                    "price": price,  # Add price field
+                    "category": comp.get("componentTypeEn", ""),  # Component category
+                    "libraryType": type_str,  # Basic or Extended
+                }
+                results.append(result)
+
+            return results
+
+        except LCSCAPIError:
+            # Brensan host: preserve quota/throttling errors for the UI.
+            raise
+        except Exception as e:
+            logger.error(f"JLCPCB search error: {e}", exc_info=True)
+            raise LCSCAPIError(f"JLCPCB search failed: {e}")
+
+
+# Singleton instance
+_api_client: Optional[LCSCAPIClient] = None
+
+
+def get_api_client() -> LCSCAPIClient:
+    """
+    Get global API client instance
+
+    Returns:
+        LCSCAPIClient instance
+    """
+    global _api_client
+    if _api_client is None:
+        _api_client = LCSCAPIClient()
+    return _api_client
