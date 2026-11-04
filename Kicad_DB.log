@@ -1,0 +1,106 @@
+2026-11-04 08:43:50,971 INFO company: start: app_dir=C:\Users\Engin\Desktop\kicad DB db=C:\Users\Engin\Desktop\kicad DB\KicadDB.sqlite
+2026-11-04 08:43:51,063 INFO company: backup: created -> C:\Users\Engin\Desktop\kicad DB\_dbBackup\KicadDB_2026-11-04.sqlite
+2026-11-04 08:43:55,119 INFO company.users: LOGIN user=admin role=admin
+2026-11-04 08:45:32,746 INFO brensan.lcsc_manager.lcsc_manager: Searching JLCPCB: AO3419, page 1
+2026-11-04 08:45:34,817 INFO brensan.lcsc_manager.lcsc_manager: Found 6 components
+2026-11-04 08:45:34,875 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C88053
+2026-11-04 08:45:34,875 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C88053
+2026-11-04 08:45:35,598 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C88053
+2026-11-04 08:45:35,598 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C88053
+2026-11-04 08:45:36,312 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=5090, prices=6 tiers
+2026-11-04 08:45:36,312 INFO brensan.lcsc_manager.lcsc_manager: Component complete: AO3419 by AOS, stock=5090
+2026-11-04 08:45:36,312 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: AO3419
+2026-11-04 08:45:36,313 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 08:45:36,316 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C88053
+2026-11-04 08:45:36,335 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C88053
+2026-11-04 08:45:36,388 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=cefd4596db214da394d9632b2b88f8f2 translation=(0.000,-0.000,0.000) rotation=(0.0,0.0,90.0)
+2026-11-04 08:45:36,388 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/cefd4596db214da394d9632b2b88f8f2
+2026-11-04 08:57:07,146 INFO company: exit user=admin
+2026-11-04 09:09:03,702 INFO company: start: app_dir=C:\Users\Engin\Desktop\kicad DB db=C:\Users\Engin\Desktop\kicad DB\KicadDB.sqlite
+2026-11-04 09:09:03,819 INFO company: backup: exists -> C:\Users\Engin\Desktop\kicad DB\_dbBackup\KicadDB_2026-11-04.sqlite
+2026-11-04 09:09:07,555 INFO company.users: LOGIN user=admin role=admin
+2026-11-04 09:09:36,914 INFO brensan.lcsc_manager.lcsc_manager: Searching JLCPCB: AO3419, page 1
+2026-11-04 09:09:37,887 INFO brensan.lcsc_manager.lcsc_manager: Found 6 components
+2026-11-04 09:09:37,959 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C88053
+2026-11-04 09:09:37,959 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C88053
+2026-11-04 09:09:38,499 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C88053
+2026-11-04 09:09:38,499 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C88053
+2026-11-04 09:09:39,319 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=5090, prices=6 tiers
+2026-11-04 09:09:39,320 INFO brensan.lcsc_manager.lcsc_manager: Component complete: AO3419 by AOS, stock=5090
+2026-11-04 09:09:39,320 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: AO3419
+2026-11-04 09:09:39,320 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 09:09:39,322 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C88053
+2026-11-04 09:09:39,331 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C88053
+2026-11-04 09:09:39,402 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=cefd4596db214da394d9632b2b88f8f2 translation=(0.000,-0.000,0.000) rotation=(0.0,0.0,90.0)
+2026-11-04 09:09:39,402 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/cefd4596db214da394d9632b2b88f8f2
+2026-11-04 09:10:42,002 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C557944
+2026-11-04 09:10:42,002 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C557944
+2026-11-04 09:10:42,605 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C557944
+2026-11-04 09:10:42,605 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C557944
+2026-11-04 09:10:43,309 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=2683, prices=6 tiers
+2026-11-04 09:10:43,309 INFO brensan.lcsc_manager.lcsc_manager: Component complete: AO3419_C557944 by VBsemi(微碧半导体), stock=2683
+2026-11-04 09:10:43,309 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: AO3419-VB
+2026-11-04 09:10:43,310 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 09:10:43,311 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C557944
+2026-11-04 09:10:43,329 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C557944
+2026-11-04 09:10:43,360 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=d777607a152f4f3aac9bb0d0c14ed6fd translation=(-861.570,843.282,0.000) rotation=(0.0,0.0,180.0)
+2026-11-04 09:10:43,361 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/d777607a152f4f3aac9bb0d0c14ed6fd
+2026-11-04 09:10:57,161 INFO company: exit user=admin
+2026-11-04 14:34:50,788 INFO company: start: app_dir=C:\Users\Engin\Desktop\kicad DB db=C:\Users\Engin\Desktop\kicad DB\KicadDB.sqlite
+2026-11-04 14:34:50,864 INFO company: backup: created -> C:\Users\Engin\Desktop\kicad DB\_dbBackup\KicadDB_2026-11-04.sqlite
+2026-11-04 14:34:54,266 INFO company.users: LOGIN user=admin role=admin
+2026-11-04 14:36:09,139 INFO brensan.lcsc_manager.lcsc_manager: Searching JLCPCB: STM32F412RET6, page 1
+2026-11-04 14:36:10,206 INFO brensan.lcsc_manager.lcsc_manager: Found 2 components
+2026-11-04 14:36:10,290 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C89374
+2026-11-04 14:36:10,291 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C89374
+2026-11-04 14:36:10,812 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C89374
+2026-11-04 14:36:10,812 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C89374
+2026-11-04 14:36:11,628 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=3121, prices=6 tiers
+2026-11-04 14:36:11,628 INFO brensan.lcsc_manager.lcsc_manager: Component complete: STM32F412RET6 by ST(意法半导体), stock=3121
+2026-11-04 14:36:11,629 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: STM32F412RET6
+2026-11-04 14:36:11,630 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 14:36:11,635 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C89374
+2026-11-04 14:36:11,663 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C89374
+2026-11-04 14:36:11,725 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=7e9b9111dcfd48d3add0eab11d882721 translation=(0.000,0.012,0.000) rotation=(0.0,0.0,0.0)
+2026-11-04 14:36:11,725 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/7e9b9111dcfd48d3add0eab11d882721
+2026-11-04 14:37:35,579 INFO brensan.lcsc_manager.lcsc_manager: Searching JLCPCB: C2913202, page 1
+2026-11-04 14:37:36,424 INFO brensan.lcsc_manager.lcsc_manager: Found 1 components
+2026-11-04 14:37:36,517 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C2913202
+2026-11-04 14:37:36,517 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C2913202
+2026-11-04 14:37:36,944 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C2913202
+2026-11-04 14:37:36,944 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C2913202
+2026-11-04 14:37:37,859 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=32545, prices=6 tiers
+2026-11-04 14:37:37,859 INFO brensan.lcsc_manager.lcsc_manager: Component complete: ESP32-S3-WROOM-1(N16R8) by ESPRESSIF(乐鑫), stock=32545
+2026-11-04 14:37:37,859 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: ESP32-S3-WROOM-1-N16R8
+2026-11-04 14:37:37,860 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 14:37:37,863 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C2913202
+2026-11-04 14:37:37,886 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C2913202
+2026-11-04 14:37:37,950 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=ff306e3ed51d4ebc94ebabcd1b4d8906 translation=(0.000,3.650,0.000) rotation=(0.0,0.0,0.0)
+2026-11-04 14:37:37,950 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/ff306e3ed51d4ebc94ebabcd1b4d8906
+2026-11-04 14:37:37,962 INFO brensan.lcsc_manager.lcsc_manager: Fetching complete data for: C2913202
+2026-11-04 14:37:37,963 INFO brensan.lcsc_manager.lcsc_manager: Searching for component: C2913202
+2026-11-04 14:37:38,476 INFO brensan.lcsc_manager.lcsc_manager: Found component in EasyEDA: C2913202
+2026-11-04 14:37:38,476 INFO brensan.lcsc_manager.lcsc_manager: Fetching JLCPCB stock/price info for: C2913202
+2026-11-04 14:37:39,678 INFO brensan.lcsc_manager.lcsc_manager: JLCPCB info: stock=32545, prices=6 tiers
+2026-11-04 14:37:39,678 INFO brensan.lcsc_manager.lcsc_manager: Component complete: ESP32-S3-WROOM-1(N16R8) by ESPRESSIF(乐鑫), stock=32545
+2026-11-04 14:37:39,678 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: ESP32-S3-WROOM-1-N16R8
+2026-11-04 14:37:39,680 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: Preview
+2026-11-04 14:37:39,682 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C2913202
+2026-11-04 14:37:39,690 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C2913202
+2026-11-04 14:37:42,584 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=ff306e3ed51d4ebc94ebabcd1b4d8906 translation=(0.000,3.650,0.000) rotation=(0.0,0.0,0.0)
+2026-11-04 14:37:42,584 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/ff306e3ed51d4ebc94ebabcd1b4d8906
+2026-11-04 14:37:51,305 INFO brensan.lcsc_manager.model_3d_converter: Processing 3D models for: C2913202
+2026-11-04 14:37:51,305 INFO brensan.lcsc_manager.model_3d_converter: Found 3D model: uuid=ff306e3ed51d4ebc94ebabcd1b4d8906 translation=(0.000,3.650,0.000) rotation=(0.0,0.0,0.0)
+2026-11-04 14:37:51,306 INFO brensan.lcsc_manager.model_3d_converter: Downloading OBJ from: https://modules.easyeda.com/3dmodel/ff306e3ed51d4ebc94ebabcd1b4d8906
+2026-11-04 14:37:51,796 INFO brensan.lcsc_manager.model_3d_converter: Downloaded OBJ model successfully
+2026-11-04 14:37:51,796 INFO brensan.lcsc_manager.model_3d_converter: Downloading STEP from: https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/ff306e3ed51d4ebc94ebabcd1b4d8906
+2026-11-04 14:37:54,914 INFO brensan.lcsc_manager.model_3d_converter: STEP model saved: C:\Users\Engin\AppData\Local\Temp\lcsc-import-7hsd6ek9\3dmodels\C2913202.step
+2026-11-04 14:37:54,942 INFO brensan.lcsc_manager.model_3d_converter: WRL model saved: C:\Users\Engin\AppData\Local\Temp\lcsc-import-7hsd6ek9\3dmodels\C2913202.wrl
+2026-11-04 14:37:55,101 INFO brensan.lcsc_manager.footprint_converter: Converting footprint: C2913202
+2026-11-04 14:37:55,114 INFO brensan.lcsc_manager.footprint_converter: Footprint conversion completed: C2913202
+2026-11-04 14:37:55,114 INFO brensan.lcsc_manager.symbol_converter: Converting symbol: ESP32-S3-WROOM-1-N16R8
+2026-11-04 14:37:55,114 INFO brensan.lcsc_manager.symbol_converter: Symbol conversion completed: C2913202_ESP32-S3-WROOM-1-N16R8
+2026-11-04 14:38:01,137 INFO company: exit user=admin
+2026-11-04 14:39:44,784 INFO company: start: app_dir=C:\Users\Engin\Desktop\kicad DB db=C:\Users\Engin\Desktop\kicad DB\KicadDB.sqlite
+2026-11-04 14:39:44,840 INFO company: backup: exists -> C:\Users\Engin\Desktop\kicad DB\_dbBackup\KicadDB_2026-11-04.sqlite
+2026-11-04 14:39:54,145 INFO company: exit: giris yapilmadi

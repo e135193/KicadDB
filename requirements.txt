@@ -1,0 +1,10 @@
+# Runtime
+requests>=2.32,<3
+pandas>=2.2,<4
+openpyxl>=3.1,<4
+xlrd>=2.0,<3          # legacy .xls BOM files only
+resvg-py>=0.5,<0.6    # LCSC symbol / footprint previews
+cadquery-ocp==7.9.3.1.1  # STEP solid reader for the 3D preview (Python 3.14)
+
+# Packaging (Brensan_Kicad_DB.spec)
+pyinstaller>=6.6

@@ -1,0 +1,530 @@
+{
+  "meta": { "version": 1.0 },
+
+  "name": "BrensanDB",
+  "description": "Brensan Full Database (All Fields)",
+
+  "source": {
+    "type": "odbc",
+    "connection_string": "DSN=BrensanDB;"
+  },
+
+  "libraries": [
+
+    {
+      "name": "Resistor",
+      "table": "Resistor",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true},
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Temperature_Coefficient", "name": "Temperature_Coefficient" },
+        { "column": "Tolerance", "name": "Tolerance" },
+        { "column": "Power", "name": "Power" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ],
+
+      "properties": {
+        "description": "Description",
+        "datasheet": "Datasheet"
+      }
+    },
+
+
+    {
+      "name": "Capacitor",
+      "table": "Capacitor",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Tolerance", "name": "Tolerance" },
+        { "column": "Voltage", "name": "Voltage", "visible_on_add": true },
+        { "column": "Package", "name": "Package" },
+        { "column": "Temperature Coefficient", "name": "Temperature_Coefficient" },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ],
+
+      "properties": {
+        "description": "Description",
+        "datasheet": "Datasheet"
+      }
+    },
+
+
+    {
+      "name": "Inductor",
+      "table": "Inductor",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Tolerance", "name": "Tolerance" },
+        { "column": "Current", "name": "Current", "visible_on_add": true },
+        { "column": "Sat_Current", "name": "Sat_Current" },
+        { "column": "DCR", "name": "DCR", "visible_on_add": true },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ]
+    },
+
+
+    {
+      "name": "Diode",
+      "table": "Diode",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Type", "name": "Type" },
+        { "column": "Current", "name": "Current" },
+        { "column": "Forward_Voltage", "name": "Forward_Voltage" },
+        { "column": "Reverse_Voltage", "name": "Reverse_Voltage" },
+        { "column": "Breakdown_Voltage", "name": "Breakdown_Voltage" },
+        { "column": "Clamping_Voltage", "name": "Clamping_Voltage" },
+        { "column": "Power", "name": "Power" },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ]
+    },
+
+
+    {
+      "name": "IC",
+      "table": "IC",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number"},
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Type", "name": "Type" },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ]
+    },
+
+
+    {
+      "name": "MCU",
+      "table": "MCU",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true},
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Type", "name": "Type" },
+        { "column": "Flash", "name": "Flash" },
+        { "column": "RAM", "name": "RAM" },
+        { "column": "Speed", "name": "Speed" },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" }
+      ]
+    },
+
+
+    {
+      "name": "Mosfet",
+      "table": "Mosfet",
+      "key": "id",
+      "symbols": "Symbols",
+      "footprints": "Footprints",
+
+      "fields": [
+        { "column": "Reference", "name": "Reference", "visible_on_add": true },
+        { "column": "Value", "name": "Value", "visible_on_add": true },
+        { "column": "Datasheet", "name": "Datasheet" },
+        { "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+        { "column": "Description", "name": "Description" },
+        { "column": "Manufacturer", "name": "Manufacturer" },
+        { "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+        { "column": "Operating_Temperature", "name": "Operating_Temperature" },
+        { "column": "Mounting_Type", "name": "Mounting_Type" },
+        { "column": "Package", "name": "Package" },
+        { "column": "Type", "name": "Type" },
+        { "column": "Current", "name": "Current" },
+        { "column": "Voltage_DS", "name": "Voltage_DS" },
+        { "column": "Voltage_GS", "name": "Voltage_GS" },
+        { "column": "RDS", "name": "RDS", "visible_on_add": true },
+        { "column": "Reach", "name": "Reach" },
+        { "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+      ]
+    },
+	
+	
+	{
+	  "name": "Transistor",
+	  "table": "Transistor",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Operating_Temperature", "name": "Operating_Temperature" },
+		{ "column": "Mounting_Type", "name": "Mounting_Type" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Current", "name": "Current" },
+		{ "column": "Voltage", "name": "Voltage" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+
+
+	{
+	  "name": "Fuse",
+	  "table": "Fuse",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Operating_Temperature", "name": "Operating_Temperature" },
+		{ "column": "Mounting_Type", "name": "Mounting_Type" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Current", "name": "Current", "visible_on_add": true },
+		{ "column": "Voltage", "name": "Voltage" },
+		{ "column": "Resistance", "name": "Resistance", "visible_on_add": true },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+	
+	
+	{
+	  "name": "PTC_NTC",
+	  "table": "PTC_NTC",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Operating_Temperature", "name": "Operating_Temperature" },
+		{ "column": "Mounting_Type", "name": "Mounting_Type" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Resistance", "name": "Resistance", "visible_on_add": true },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+	
+	
+	{
+	  "name": "Connector",
+	  "table": "Connector",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Pins", "name": "Pins" },
+		{ "column": "Current", "name": "Current" },
+		{ "column": "Voltage", "name": "Voltage" },
+		{ "column": "Orientation", "name": "Orientation" },
+		{ "column": "Mating", "name": "Mating" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+
+
+	{
+	  "name": "Crystal",
+	  "table": "Crystal",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Frequency", "name": "Frequency" },
+		{ "column": "Load_Capacitance", "name": "Load_Capacitance" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+
+
+	{
+	  "name": "Opto",
+	  "table": "Opto",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Output_Type", "name": "Output_Type" },
+		{ "column": "Channels", "name": "Channels" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+
+
+	{
+	  "name": "Relay",
+	  "table": "Relay",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Contact_Form", "name": "Contact_Form" },
+		{ "column": "Switching_Voltage", "name": "Switching_Voltage" },
+		{ "column": "Contact_Current", "name": "Contact_Current" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+
+
+	{
+	  "name": "Switches",
+	  "table": "Button_Switch",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Circuit", "name": "Circuit" },
+		{ "column": "Current_Rating", "name": "Current_Rating" },
+		{ "column": "Voltage_Rating", "name": "Voltage_Rating" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+	
+	
+	{
+	  "name": "Misc",
+	  "table": "Miscellaneous",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+	
+	{
+	  "name": "Mechanical",
+	  "table": "Mechanical",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Reference", "name": "Reference", "visible_on_add": true },
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Datasheet", "name": "Datasheet" },
+		{ "column": "Brensan_Part_Number", "name": "Brensan_Part_Number" },
+		{ "column": "Description", "name": "Description" },
+		{ "column": "Manufacturer", "name": "Manufacturer" },
+		{ "column": "Manufacturer_Part_Number", "name": "Manufacturer_Part_Number" },
+		{ "column": "Type", "name": "Type" },
+		{ "column": "Package", "name": "Package" },
+		{ "column": "Reach", "name": "Reach" },
+		{ "column": "Rohs", "name": "Rohs" },
+		{ "column": "Product Status", "name": "Product Status" },
+		{ "column": "Brensan_Stock", "name": "Brensan_Stock" }
+	  ]
+	},
+	
+	{
+	  "name": "Header",
+	  "table": "Header",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Value", "name": "Value", "visible_on_add": true },
+		{ "column": "Description", "name": "Description" }
+	  ]
+	},
+
+	{
+	  "name": "PAD",
+	  "table": "PAD",
+	  "key": "id",
+	  "symbols": "Symbols",
+	  "footprints": "Footprints",
+
+	  "fields": [
+		{ "column": "Value", "name": "Value" },
+		{ "column": "Description", "name": "Description" }
+	  ]
+	}
+	
+  ]
+}

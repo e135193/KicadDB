@@ -1,0 +1,74 @@
+{
+  "keys": [
+    {
+      "id": "key1",
+      "client_id": "yTuuF4a3pGto2GcNrGseJGLieMhAphuQzPfjjzGR0KtEoIy0",
+      "client_secret": "gg4mp0HKUkuE4H1Jas8RJnfpJ4IAZlQAyALm0tehhUe1XZaYPY5DpSXvAwqq6Z8w",
+      "key": "",
+      "daily_limit": 1000
+    },
+    {
+      "id": "key2",
+      "client_id": "Uv1rrH8ETb9BdMMYXbDAQv5UWK0bP959ogGZ2qG33gG9mXxv",
+      "client_secret": "oeMAYgm05bW0A0iSxGda2PcrPcTYq4yXO7So44KwXcMhzRBvqYlhPnZfzoT9OrQ3",
+      "key": "",
+      "daily_limit": 1000
+    },
+    {
+      "id": "key3",
+      "client_id": "xpu6T5YddbiCHYsmFbYsjftamMTm8ondUB9r4jXzMQv1Hmj7",
+      "client_secret": "a5A18Ign1fy5EUJ1iXr0sUGXpyytyLNqungHHKSwd9mNn9DGAzWlLLDcajMeL479",
+      "key": "",
+      "daily_limit": 1000
+    },
+    {
+      "id": "key4",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key5",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key6",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key7",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key8",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key9",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    },
+    {
+      "id": "key10",
+      "client_id": "",
+      "client_secret": "",
+      "key": "",
+      "daily_limit": 0
+    }
+  ]
+}

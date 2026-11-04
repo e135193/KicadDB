@@ -1,0 +1,40 @@
+# Secrets — DigiKey client_id/client_secret live here
+API-Keys.json
+API-Keys-usage-cache.json
+SMTP-settings.json
+
+# Databases (binary, large; the authoritative copy lives in the library root)
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+_dbBackup/
+
+# Runtime log written next to the exe/script
+Brensan_Kicad_DB.log
+
+# Generated spreadsheets
+Brensan Part Numbers.xlsx
+*_DigiKey_Updated.xlsx
+*_LCSC_Updated.xlsx
+
+# Build output
+build/
+dist/
+*.spec.bak
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editor / OS
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Local backup archives
+Backup/
+_Backups/
+*.7z
+LCSC-settings.json
+LCSC-usage-cache.json
