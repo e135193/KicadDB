@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-11-02T13:43:09.953352+00:00",
+  "nodes": {
+    "footprint_suggestions_package_specs": {
+      "code_fingerprint": "d71051f05bbe8b453748a9013a66b09812f265e9bf6fcc4f8e41fec05455f1b2",
+      "label": "package_specs()",
+      "last": "2026-11-02T13:39:38.947607+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-02T13:39:38.947607+00:00",
+          "outcome": "useful",
+          "q": "mevcutta seçmiş olduğum malzeme için footprint önizlemesi görüntülenmiyor bunu düzelt"
+        }
+      ],
+      "score": 0.999943575,
+      "source_file": "footprint_suggestions.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "footprint_suggestions_suggest": {
+      "code_fingerprint": "d71051f05bbe8b453748a9013a66b09812f265e9bf6fcc4f8e41fec05455f1b2",
+      "label": "suggest()",
+      "last": "2026-11-02T13:39:38.947607+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-02T13:39:38.947607+00:00",
+          "outcome": "useful",
+          "q": "mevcutta seçmiş olduğum malzeme için footprint önizlemesi görüntülenmiyor bunu düzelt"
+        }
+      ],
+      "score": 0.999943575,
+      "source_file": "footprint_suggestions.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "lcsc_library": {
+      "code_fingerprint": "c73a04d95cc0499b107cb31ad4c0ae2652bcecfb3366971547888adc96fbffe4",
+      "label": "lcsc_library.py",
+      "last": "2026-11-02T12:46:03.895236+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-02T12:46:03.895236+00:00",
+          "outcome": "useful",
+          "q": "seçilen klasöre yalnızca dosyaları indir. klasör içerisinde klasöre dosya indirme. tüm indirilenler tek bir klasör de olsun. 3d görüntüleme arayüzü yok. nasıl 3d görüntüleyebilirim"
+        }
+      ],
+      "score": 0.99908423,
+      "source_file": "lcsc_library.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "lcsc_preview_preview": {
+      "code_fingerprint": "88e6db078383e862fe7ce27030797376dda90051821af0ceba7fb3e3402c670f",
+      "label": "Preview",
+      "last": "2026-11-02T13:39:38.947607+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-02T13:39:38.947607+00:00",
+          "outcome": "useful",
+          "q": "mevcutta seçmiş olduğum malzeme için footprint önizlemesi görüntülenmiyor bunu düzelt"
+        }
+      ],
+      "score": 0.999943575,
+      "source_file": "lcsc_preview.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "ui_lcsc_manager_window_lcscmanagerwindow": {
+      "code_fingerprint": "79eeab06d49889c35e4792859ffc22227ba872e16a990a449b0dc2860514675e",
+      "label": "LcscManagerWindow",
+      "last": "2026-11-02T12:46:03.895236+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-02T12:46:03.895236+00:00",
+          "outcome": "useful",
+          "q": "seçilen klasöre yalnızca dosyaları indir. klasör içerisinde klasöre dosya indirme. tüm indirilenler tek bir klasör de olsun. 3d görüntüleme arayüzü yok. nasıl 3d görüntüleyebilirim"
+        },
+        {
+          "date": "2026-11-02T12:01:50.756351+00:00",
+          "outcome": "useful",
+          "q": "LCSC Manager ekranını tüm ekranı kaplayabilecek şekilde ayarlayabilmek istiyorum."
+        }
+      ],
+      "score": 1.997459865,
+      "source_file": "ui/lcsc_manager_window.py",
+      "status": "preferred",
+      "uses": 2
+    }
+  },
+  "version": 1
+}

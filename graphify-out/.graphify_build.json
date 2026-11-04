@@ -1,0 +1,1 @@
+{"excludes": ["outputs", "output", "tmp", "docs/Yeniden_Yazim_Spesifikasyonu.txt", "docs/manual_build"], "gitignore": true}

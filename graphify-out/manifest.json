@@ -1,0 +1,644 @@
+{
+  ".claude/skills/brensan-component-entry/evals/evals.json": {
+    "mtime": 1792560025.700023,
+    "seen": 1793620050.7295094,
+    "ast_hash": "a24483080e6b50cd7d05cfaffbe2a4b5",
+    "semantic_hash": "a24483080e6b50cd7d05cfaffbe2a4b5"
+  },
+  ".claude/skills/brensan-component-entry/scripts/component_tool.py": {
+    "mtime": 1792560352.778239,
+    "seen": 1793620050.729517,
+    "ast_hash": "f8093b4aa2a7d47f92b1dea1d0783c39",
+    "semantic_hash": "f8093b4aa2a7d47f92b1dea1d0783c39"
+  },
+  "Brensan_Kicad_DB.py": {
+    "mtime": 1793617689.6722102,
+    "seen": 1793620050.7295203,
+    "ast_hash": "0332ddcd3500b3a97243b727bef20e69",
+    "semantic_hash": "0332ddcd3500b3a97243b727bef20e69"
+  },
+  "Purchasing.py": {
+    "mtime": 1791549549.5952384,
+    "seen": 1793620050.7295222,
+    "ast_hash": "136150797e2c28e71dc2f94008729db5",
+    "semantic_hash": "136150797e2c28e71dc2f94008729db5"
+  },
+  "api_keys.py": {
+    "mtime": 1791290124.7715821,
+    "seen": 1793620050.7295237,
+    "ast_hash": "c93b6ebf808d6a61dbd46275761694f7",
+    "semantic_hash": "c93b6ebf808d6a61dbd46275761694f7"
+  },
+  "api_manager.py": {
+    "mtime": 1785915526.8067663,
+    "seen": 1793620050.7295249,
+    "ast_hash": "df781177da6549e3d775d6ca8902a81b",
+    "semantic_hash": "df781177da6549e3d775d6ca8902a81b"
+  },
+  "bom_stock.py": {
+    "mtime": 1791549398.7836435,
+    "seen": 1793620050.7295263,
+    "ast_hash": "a74ce89bc88063a7e8a61f4dfa26d876",
+    "semantic_hash": "a74ce89bc88063a7e8a61f4dfa26d876"
+  },
+  "config.py": {
+    "mtime": 1792560352.7759142,
+    "seen": 1793620050.7295272,
+    "ast_hash": "c590060d66b1a4b352a67ee09f289cf9",
+    "semantic_hash": "c590060d66b1a4b352a67ee09f289cf9"
+  },
+  "db.py": {
+    "mtime": 1792761547.8591647,
+    "seen": 1793620050.7295284,
+    "ast_hash": "e03af58a2f7a909a2a6820fa4af7444a",
+    "semantic_hash": "e03af58a2f7a909a2a6820fa4af7444a"
+  },
+  "db_backup.py": {
+    "mtime": 1791549399.891692,
+    "seen": 1793620050.7295296,
+    "ast_hash": "d6140356896c6fbabeaac1e8209eceaf",
+    "semantic_hash": "d6140356896c6fbabeaac1e8209eceaf"
+  },
+  "digikey_api.py": {
+    "mtime": 1791549398.9159825,
+    "seen": 1793620050.7295306,
+    "ast_hash": "f21d2d7fe357f4cb85877f5153b45b9c",
+    "semantic_hash": "f21d2d7fe357f4cb85877f5153b45b9c"
+  },
+  "footprint_suggestions.py": {
+    "mtime": 1792560352.778239,
+    "seen": 1793620050.729532,
+    "ast_hash": "c961d5793d76776a1a58d7ee4cd489cf",
+    "semantic_hash": "c961d5793d76776a1a58d7ee4cd489cf"
+  },
+  "kicad_symbols.py": {
+    "mtime": 1789639649.4902966,
+    "seen": 1793620050.729533,
+    "ast_hash": "70368866f6fb91fcfb5731937a5729f8",
+    "semantic_hash": "70368866f6fb91fcfb5731937a5729f8"
+  },
+  "lcsc_api.py": {
+    "mtime": 1793617156.164286,
+    "seen": 1793620050.729534,
+    "ast_hash": "3c2385fb4d61fa38c72d456e964c37c5",
+    "semantic_hash": "3c2385fb4d61fa38c72d456e964c37c5"
+  },
+  "lcsc_library.py": {
+    "mtime": 1793618132.153598,
+    "seen": 1793620050.7295353,
+    "ast_hash": "3e82448dadfe69239db7575987db9867",
+    "semantic_hash": "3e82448dadfe69239db7575987db9867"
+  },
+  "lcsc_preview.py": {
+    "mtime": 1793619760.0418582,
+    "seen": 1793620050.7295365,
+    "ast_hash": "a156574bbae1f7b55a1312a27d7a26cc",
+    "semantic_hash": "a156574bbae1f7b55a1312a27d7a26cc"
+  },
+  "lcsc_settings.py": {
+    "mtime": 1793617541.5779424,
+    "seen": 1793620050.7295375,
+    "ast_hash": "e20c17816ae6c25a17f5d205ef8518e3",
+    "semantic_hash": "e20c17816ae6c25a17f5d205ef8518e3"
+  },
+  "local_stock.py": {
+    "mtime": 1791542149.732885,
+    "seen": 1793620050.7295387,
+    "ast_hash": "62f39c7d2ed90108d129780083d7c041",
+    "semantic_hash": "62f39c7d2ed90108d129780083d7c041"
+  },
+  "log_history.py": {
+    "mtime": 1791549399.4427626,
+    "seen": 1793620050.7295396,
+    "ast_hash": "693dd5f1b581506f2ba82a040f7e0843",
+    "semantic_hash": "693dd5f1b581506f2ba82a040f7e0843"
+  },
+  "part_number_request.py": {
+    "mtime": 1791467650.7107496,
+    "seen": 1793620050.7295406,
+    "ast_hash": "e4e9bfeff42bd0e2eef3a7ab43d62cb6",
+    "semantic_hash": "e4e9bfeff42bd0e2eef3a7ab43d62cb6"
+  },
+  "password_reset.py": {
+    "mtime": 1792762161.459727,
+    "seen": 1793620050.7295415,
+    "ast_hash": "cc6f3b30667fbd197600131c63d0df26",
+    "semantic_hash": "cc6f3b30667fbd197600131c63d0df26"
+  },
+  "product_tree.py": {
+    "mtime": 1792042189.3371727,
+    "seen": 1793620050.7295427,
+    "ast_hash": "365128754dc977191f4c6f92ca29bb07",
+    "semantic_hash": "365128754dc977191f4c6f92ca29bb07"
+  },
+  "product_tree_export.py": {
+    "mtime": 1792042189.9296982,
+    "seen": 1793620050.7295442,
+    "ast_hash": "87ac7e894a0bea068d095ce7f77a9548",
+    "semantic_hash": "87ac7e894a0bea068d095ce7f77a9548"
+  },
+  "project_overview.py": {
+    "mtime": 1792045424.756697,
+    "seen": 1793620050.729545,
+    "ast_hash": "c5a851ed434cb4c3fbaed8efc47ef6bd",
+    "semantic_hash": "c5a851ed434cb4c3fbaed8efc47ef6bd"
+  },
+  "project_tree_import.py": {
+    "mtime": 1791543362.0761547,
+    "seen": 1793620050.7295463,
+    "ast_hash": "db29be56db1eb6d0b82f3e97c7064e7b",
+    "semantic_hash": "db29be56db1eb6d0b82f3e97c7064e7b"
+  },
+  "reset_mail.py": {
+    "mtime": 1792762162.4197917,
+    "seen": 1793620050.7295473,
+    "ast_hash": "ba51a9452fd0bb5d29c22d2cd41d392d",
+    "semantic_hash": "ba51a9452fd0bb5d29c22d2cd41d392d"
+  },
+  "run_smoke.py": {
+    "mtime": 1785911345.2281055,
+    "seen": 1793620050.7295485,
+    "ast_hash": "9c82e8bb271dbd2fddeb8249d9946442",
+    "semantic_hash": "9c82e8bb271dbd2fddeb8249d9946442"
+  },
+  "settings.json": {
+    "mtime": 1793619641.1943927,
+    "seen": 1793620050.7295496,
+    "ast_hash": "49737fda1a97bd3d5df2616bfe1ee015",
+    "semantic_hash": "49737fda1a97bd3d5df2616bfe1ee015"
+  },
+  "tests/fixtures/lcsc_manager/C25804_easyeda.json": {
+    "mtime": 1793617544.0413587,
+    "seen": 1793620050.7295506,
+    "ast_hash": "0f9971ccc02c521972d34e255b82b6f1",
+    "semantic_hash": "0f9971ccc02c521972d34e255b82b6f1"
+  },
+  "tests/fixtures/lcsc_manager/C25804_jlcpcb.json": {
+    "mtime": 1793617544.050233,
+    "seen": 1793620050.7295518,
+    "ast_hash": "974eed343833f3a3bb1ab37fa5fe4205",
+    "semantic_hash": "974eed343833f3a3bb1ab37fa5fe4205"
+  },
+  "tests/test_api_settings.py": {
+    "mtime": 1793617542.0676782,
+    "seen": 1793620050.729553,
+    "ast_hash": "feb4fab44b147a34be7a2f90ae8360f3",
+    "semantic_hash": "feb4fab44b147a34be7a2f90ae8360f3"
+  },
+  "tests/test_audit.py": {
+    "mtime": 1792136448.223837,
+    "seen": 1793620050.729554,
+    "ast_hash": "0b7fdd024946e4a3c70ac4d306eecfaf",
+    "semantic_hash": "0b7fdd024946e4a3c70ac4d306eecfaf"
+  },
+  "tests/test_bom_circuit_breaker.py": {
+    "mtime": 1791549549.825735,
+    "seen": 1793620050.7295551,
+    "ast_hash": "65292398cc481668e5b0769e7fb83a82",
+    "semantic_hash": "65292398cc481668e5b0769e7fb83a82"
+  },
+  "tests/test_bom_digikey_export.py": {
+    "mtime": 1791286768.9250095,
+    "seen": 1793620050.7295563,
+    "ast_hash": "29f1d7bb90e3c953b4a20322ba56197f",
+    "semantic_hash": "29f1d7bb90e3c953b4a20322ba56197f"
+  },
+  "tests/test_bom_stock.py": {
+    "mtime": 1791549469.8527277,
+    "seen": 1793620050.7295573,
+    "ast_hash": "98c9c00dd8f7e4208490e4e931e04070",
+    "semantic_hash": "98c9c00dd8f7e4208490e4e931e04070"
+  },
+  "tests/test_config_paths.py": {
+    "mtime": 1792560352.778239,
+    "seen": 1793620050.7295582,
+    "ast_hash": "0e4bbd9c4a2f1de474a1b8866f08d42c",
+    "semantic_hash": "0e4bbd9c4a2f1de474a1b8866f08d42c"
+  },
+  "tests/test_db_backup.py": {
+    "mtime": 1791467868.5457819,
+    "seen": 1793620050.7295592,
+    "ast_hash": "ce783263c719ef1f07412e1d22673287",
+    "semantic_hash": "ce783263c719ef1f07412e1d22673287"
+  },
+  "tests/test_db_kicad.py": {
+    "mtime": 1793618301.611667,
+    "seen": 1793620050.7295604,
+    "ast_hash": "6b249c383edd8b3c7f4e9c30f6b31167",
+    "semantic_hash": "6b249c383edd8b3c7f4e9c30f6b31167"
+  },
+  "tests/test_digikey.py": {
+    "mtime": 1788952668.3000703,
+    "seen": 1793620050.7295616,
+    "ast_hash": "9a8d22f5101d7ee1191d131a5eabe626",
+    "semantic_hash": "9a8d22f5101d7ee1191d131a5eabe626"
+  },
+  "tests/test_footprint_suggestions.py": {
+    "mtime": 1792560496.257522,
+    "seen": 1793620050.7295625,
+    "ast_hash": "18774c781147113673ce885900f705e0",
+    "semantic_hash": "18774c781147113673ce885900f705e0"
+  },
+  "tests/test_formatting.py": {
+    "mtime": 1788952698.3629377,
+    "seen": 1793620050.7295637,
+    "ast_hash": "812bfeae37a0f18f5e4ea9e47eac65af",
+    "semantic_hash": "812bfeae37a0f18f5e4ea9e47eac65af"
+  },
+  "tests/test_lcsc_manager.py": {
+    "mtime": 1793619564.2211518,
+    "seen": 1793620050.7295647,
+    "ast_hash": "09035357f81cfebb947dd9b78408a0c2",
+    "semantic_hash": "09035357f81cfebb947dd9b78408a0c2"
+  },
+  "tests/test_local_stock.py": {
+    "mtime": 1791542433.4716752,
+    "seen": 1793620050.7295659,
+    "ast_hash": "3b3320d45c7124e13b966a074b917462",
+    "semantic_hash": "3b3320d45c7124e13b966a074b917462"
+  },
+  "tests/test_log_history.py": {
+    "mtime": 1791549549.6591322,
+    "seen": 1793620050.7295675,
+    "ast_hash": "24551d0e42cc86822f758cab5d74ad8e",
+    "semantic_hash": "24551d0e42cc86822f758cab5d74ad8e"
+  },
+  "tests/test_part_number_request.py": {
+    "mtime": 1791467651.2523355,
+    "seen": 1793620050.7295687,
+    "ast_hash": "13a36eab2d57108f98a90d9fee2f4d25",
+    "semantic_hash": "13a36eab2d57108f98a90d9fee2f4d25"
+  },
+  "tests/test_password_reset.py": {
+    "mtime": 1792762163.2250001,
+    "seen": 1793620050.7295697,
+    "ast_hash": "ac4b8078e517f1a79b6b80205a1e06e7",
+    "semantic_hash": "ac4b8078e517f1a79b6b80205a1e06e7"
+  },
+  "tests/test_product_tree.py": {
+    "mtime": 1792136700.865987,
+    "seen": 1793620050.729571,
+    "ast_hash": "eceda859f3cc48dde2f28afe492bdb92",
+    "semantic_hash": "eceda859f3cc48dde2f28afe492bdb92"
+  },
+  "tests/test_product_tree_export.py": {
+    "mtime": 1791799286.3639195,
+    "seen": 1793620050.729572,
+    "ast_hash": "0b26f7a4be4bea160fa92ecf2a435036",
+    "semantic_hash": "0b26f7a4be4bea160fa92ecf2a435036"
+  },
+  "tests/test_project_audit.py": {
+    "mtime": 1791549639.6135283,
+    "seen": 1793620050.729573,
+    "ast_hash": "ce6a3140cb1a0109870d549f57441bff",
+    "semantic_hash": "ce6a3140cb1a0109870d549f57441bff"
+  },
+  "tests/test_project_overview.py": {
+    "mtime": 1792045492.8651812,
+    "seen": 1793620050.7295742,
+    "ast_hash": "07250bfe7c596b09f8e652a5ddf97066",
+    "semantic_hash": "07250bfe7c596b09f8e652a5ddf97066"
+  },
+  "tests/test_project_tree_import.py": {
+    "mtime": 1791543792.822417,
+    "seen": 1793620050.7295754,
+    "ast_hash": "fd13cf3055c0ad07f20a00b1893c7764",
+    "semantic_hash": "fd13cf3055c0ad07f20a00b1893c7764"
+  },
+  "tests/test_purchasing.py": {
+    "mtime": 1791266597.5686831,
+    "seen": 1793620050.7295763,
+    "ast_hash": "b4fdccc986d2bf34244e9d3e964919ff",
+    "semantic_hash": "b4fdccc986d2bf34244e9d3e964919ff"
+  },
+  "tests/test_users.py": {
+    "mtime": 1791467870.1984458,
+    "seen": 1793620050.7295775,
+    "ast_hash": "9f356d4b9a02f2ef0ab7b5e325bccbb3",
+    "semantic_hash": "9f356d4b9a02f2ef0ab7b5e325bccbb3"
+  },
+  "tests/test_verified_permissions.py": {
+    "mtime": 1791280405.0982053,
+    "seen": 1793620050.7295785,
+    "ast_hash": "360d6c8627d88c84c95ae70278ae9f7b",
+    "semantic_hash": "360d6c8627d88c84c95ae70278ae9f7b"
+  },
+  "third_party/__init__.py": {
+    "mtime": 1793616962.3442988,
+    "seen": 1793620050.7295797,
+    "ast_hash": "ee5c756c445b38e73432061ec9f6202e",
+    "semantic_hash": "ee5c756c445b38e73432061ec9f6202e"
+  },
+  "third_party/lcsc_manager/__init__.py": {
+    "mtime": 1793616962.3442988,
+    "seen": 1793620050.7295809,
+    "ast_hash": "13f3e624d304fe576afa6edf484d031b",
+    "semantic_hash": "13f3e624d304fe576afa6edf484d031b"
+  },
+  "third_party/lcsc_manager/api/__init__.py": {
+    "mtime": 1793616836.5895615,
+    "seen": 1793620050.7295818,
+    "ast_hash": "1aa5d8e5a1c16609025ae90c378b7620",
+    "semantic_hash": "1aa5d8e5a1c16609025ae90c378b7620"
+  },
+  "third_party/lcsc_manager/api/lcsc_api.py": {
+    "mtime": 1793617690.4326212,
+    "seen": 1793620050.729583,
+    "ast_hash": "ad649070886c63bf5c320ac02c7974a4",
+    "semantic_hash": "ad649070886c63bf5c320ac02c7974a4"
+  },
+  "third_party/lcsc_manager/converters/__init__.py": {
+    "mtime": 1793616836.5925412,
+    "seen": 1793620050.7295842,
+    "ast_hash": "a2f6e6ef77d6187dacc60b67beae487a",
+    "semantic_hash": "a2f6e6ef77d6187dacc60b67beae487a"
+  },
+  "third_party/lcsc_manager/converters/footprint_converter.py": {
+    "mtime": 1793616836.5932646,
+    "seen": 1793620050.7295854,
+    "ast_hash": "a5fbff4ec93cb21e4738528ada561592",
+    "semantic_hash": "a5fbff4ec93cb21e4738528ada561592"
+  },
+  "third_party/lcsc_manager/converters/jlc2kicad/__init__.py": {
+    "mtime": 1793616836.5932646,
+    "seen": 1793620050.7295866,
+    "ast_hash": "a0b4f43d1ed5df565126d7ce243fcd48",
+    "semantic_hash": "a0b4f43d1ed5df565126d7ce243fcd48"
+  },
+  "third_party/lcsc_manager/converters/jlc2kicad/symbol_handlers.py": {
+    "mtime": 1793616836.5932646,
+    "seen": 1793620050.7295878,
+    "ast_hash": "c84a90050bd29341f7e34a45ab81f0aa",
+    "semantic_hash": "c84a90050bd29341f7e34a45ab81f0aa"
+  },
+  "third_party/lcsc_manager/converters/model_3d_converter.py": {
+    "mtime": 1793616836.5952919,
+    "seen": 1793620050.7295887,
+    "ast_hash": "f9a233c66a613b548732319f56fa57b5",
+    "semantic_hash": "f9a233c66a613b548732319f56fa57b5"
+  },
+  "third_party/lcsc_manager/converters/symbol_converter.py": {
+    "mtime": 1793617257.8639956,
+    "seen": 1793620050.72959,
+    "ast_hash": "2b22208d2a8c5d75bde1b1d46c8f3d49",
+    "semantic_hash": "2b22208d2a8c5d75bde1b1d46c8f3d49"
+  },
+  "third_party/lcsc_manager/library/__init__.py": {
+    "mtime": 1793616836.601297,
+    "seen": 1793620050.7295911,
+    "ast_hash": "52a01037f6ecb46b0417819295f5b4b5",
+    "semantic_hash": "52a01037f6ecb46b0417819295f5b4b5"
+  },
+  "third_party/lcsc_manager/library/lib_table.py": {
+    "mtime": 1793616836.601297,
+    "seen": 1793620050.729592,
+    "ast_hash": "ce74694b75d3315e35de462e15b501b4",
+    "semantic_hash": "ce74694b75d3315e35de462e15b501b4"
+  },
+  "third_party/lcsc_manager/library/symbol_lib.py": {
+    "mtime": 1793616836.6024337,
+    "seen": 1793620050.729593,
+    "ast_hash": "4078441e5293c8f391cfedd4d955e2d1",
+    "semantic_hash": "4078441e5293c8f391cfedd4d955e2d1"
+  },
+  "third_party/lcsc_manager/utils/__init__.py": {
+    "mtime": 1793616836.606438,
+    "seen": 1793620050.7295945,
+    "ast_hash": "3a83ccaf5bb0e582685dad212fb44128",
+    "semantic_hash": "3a83ccaf5bb0e582685dad212fb44128"
+  },
+  "third_party/lcsc_manager/utils/config.py": {
+    "mtime": 1793616962.3442988,
+    "seen": 1793620050.7295954,
+    "ast_hash": "b6a61881f8e1599bca6a57c8bc834039",
+    "semantic_hash": "b6a61881f8e1599bca6a57c8bc834039"
+  },
+  "third_party/lcsc_manager/utils/files.py": {
+    "mtime": 1793616836.6074445,
+    "seen": 1793620050.7295964,
+    "ast_hash": "bd78a631dcd3bf4fe467e4231cc85ffc",
+    "semantic_hash": "bd78a631dcd3bf4fe467e4231cc85ffc"
+  },
+  "third_party/lcsc_manager/utils/logger.py": {
+    "mtime": 1793616962.3442988,
+    "seen": 1793620050.7295978,
+    "ast_hash": "3c297839bcf1c1cab6997ed8c3ba08d0",
+    "semantic_hash": "3c297839bcf1c1cab6997ed8c3ba08d0"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/__init__.py": {
+    "mtime": 1793616836.6126323,
+    "seen": 1793620050.7295988,
+    "ast_hash": "c8b5f395fda9daaa3e45bc6093a1ba88",
+    "semantic_hash": "c8b5f395fda9daaa3e45bc6093a1ba88"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/_version.py": {
+    "mtime": 1793616836.613625,
+    "seen": 1793620050.7295997,
+    "ast_hash": "972bcdb7ea6e75d0376d59b22cab6313",
+    "semantic_hash": "972bcdb7ea6e75d0376d59b22cab6313"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/easyeda/__init__.py": {
+    "mtime": 1793616836.614189,
+    "seen": 1793620050.7296007,
+    "ast_hash": "c35ca63afec53bbe0abbbf6d79b70d40",
+    "semantic_hash": "c35ca63afec53bbe0abbbf6d79b70d40"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/easyeda/easyeda_api.py": {
+    "mtime": 1793616836.6152265,
+    "seen": 1793620050.7296019,
+    "ast_hash": "057d7d9aa202f15af50f275de0d3bbdc",
+    "semantic_hash": "057d7d9aa202f15af50f275de0d3bbdc"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/easyeda/easyeda_importer.py": {
+    "mtime": 1793616836.6152265,
+    "seen": 1793620050.729603,
+    "ast_hash": "71fe7bbc46e41eda25ec73562d2ef1bd",
+    "semantic_hash": "71fe7bbc46e41eda25ec73562d2ef1bd"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/easyeda/parameters_easyeda.py": {
+    "mtime": 1793616836.6162257,
+    "seen": 1793620050.729604,
+    "ast_hash": "1676a5e8a0d814385f7cf50e6e95d801",
+    "semantic_hash": "1676a5e8a0d814385f7cf50e6e95d801"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/easyeda/svg_path_parser.py": {
+    "mtime": 1793616836.6172323,
+    "seen": 1793620050.7296054,
+    "ast_hash": "38ecec5e49d2af5a80a43ad0692481fa",
+    "semantic_hash": "38ecec5e49d2af5a80a43ad0692481fa"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/kicad/__init__.py": {
+    "mtime": 1793616836.6172323,
+    "seen": 1793620050.7296064,
+    "ast_hash": "ca4b3486334a87f565ef87d9dfeb1755",
+    "semantic_hash": "ca4b3486334a87f565ef87d9dfeb1755"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/kicad/export_kicad_footprint.py": {
+    "mtime": 1793616836.6182258,
+    "seen": 1793620050.7296076,
+    "ast_hash": "99498b71c2010e44f34c8c872c40488d",
+    "semantic_hash": "99498b71c2010e44f34c8c872c40488d"
+  },
+  "third_party/lcsc_manager/vendor/easyeda2kicad/kicad/parameters_kicad_footprint.py": {
+    "mtime": 1793616836.6182258,
+    "seen": 1793620050.7296088,
+    "ast_hash": "29626d26a83f736540d435af5813351e",
+    "semantic_hash": "29626d26a83f736540d435af5813351e"
+  },
+  "ui/__init__.py": {
+    "mtime": 1785909745.0858274,
+    "seen": 1793620050.7296097,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "ui/bom_edit_window.py": {
+    "mtime": 1791546733.9471405,
+    "seen": 1793620050.7296107,
+    "ast_hash": "c7c53d00aee3bb0fbfd6c4a352c2f834",
+    "semantic_hash": "c7c53d00aee3bb0fbfd6c4a352c2f834"
+  },
+  "ui/export_revision_window.py": {
+    "mtime": 1791545627.2843008,
+    "seen": 1793620050.7296119,
+    "ast_hash": "1b15e15c5d2e75493c917606fe70a08a",
+    "semantic_hash": "1b15e15c5d2e75493c917606fe70a08a"
+  },
+  "ui/footprint_window.py": {
+    "mtime": 1791467801.5169413,
+    "seen": 1793620050.729613,
+    "ast_hash": "7bb91c297db3089948bcdfb5e4047acf",
+    "semantic_hash": "7bb91c297db3089948bcdfb5e4047acf"
+  },
+  "ui/lcsc_manager_window.py": {
+    "mtime": 1793619563.3885164,
+    "seen": 1793620050.729614,
+    "ast_hash": "bc19decd9e44c683c12a89bceb5eb71c",
+    "semantic_hash": "bc19decd9e44c683c12a89bceb5eb71c"
+  },
+  "ui/login_window.py": {
+    "mtime": 1792761731.3959308,
+    "seen": 1793620050.729616,
+    "ast_hash": "3c63fc8f1777fc88fc850e3bb19d0e57",
+    "semantic_hash": "3c63fc8f1777fc88fc850e3bb19d0e57"
+  },
+  "ui/logo.py": {
+    "mtime": 1790670888.491511,
+    "seen": 1793620050.729617,
+    "ast_hash": "322a7c1b03bce73222a6cc409ec10ab8",
+    "semantic_hash": "322a7c1b03bce73222a6cc409ec10ab8"
+  },
+  "ui/mail_settings_tab.py": {
+    "mtime": 1792761653.258043,
+    "seen": 1793620050.729618,
+    "ast_hash": "4b937b6d094ceefedb530e2b20c920fd",
+    "semantic_hash": "4b937b6d094ceefedb530e2b20c920fd"
+  },
+  "ui/obsolete_products_window.py": {
+    "mtime": 1791985121.218227,
+    "seen": 1793620050.7296193,
+    "ast_hash": "a007eb88532c9d143800036f3b60f75e",
+    "semantic_hash": "a007eb88532c9d143800036f3b60f75e"
+  },
+  "ui/product_tree_window.py": {
+    "mtime": 1792053492.051877,
+    "seen": 1793620050.7296202,
+    "ast_hash": "37901577738c9e50e6db47249a43fb71",
+    "semantic_hash": "37901577738c9e50e6db47249a43fb71"
+  },
+  "ui/project_overview_panel.py": {
+    "mtime": 1792045425.331486,
+    "seen": 1793620050.7296212,
+    "ast_hash": "4ac19c3889be7c5e61c7478f9a7900c4",
+    "semantic_hash": "4ac19c3889be7c5e61c7478f9a7900c4"
+  },
+  "ui/revision_compare_window.py": {
+    "mtime": 1791468012.003884,
+    "seen": 1793620050.7296226,
+    "ast_hash": "aecf705b662160ed1ea68d199403be83",
+    "semantic_hash": "aecf705b662160ed1ea68d199403be83"
+  },
+  "ui/settings_window.py": {
+    "mtime": 1793617452.1619267,
+    "seen": 1793620050.7296238,
+    "ast_hash": "dc1b4996dd0c9c169c473a11b77c0063",
+    "semantic_hash": "dc1b4996dd0c9c169c473a11b77c0063"
+  },
+  "ui/widgets.py": {
+    "mtime": 1791814138.88645,
+    "seen": 1793620050.7296247,
+    "ast_hash": "cacae5fc45b4be0537b23fa4829441f4",
+    "semantic_hash": "cacae5fc45b4be0537b23fa4829441f4"
+  },
+  "users.py": {
+    "mtime": 1792761433.639196,
+    "seen": 1793620050.7296262,
+    "ast_hash": "e0c8a932cc82d3068837dc6605be28bc",
+    "semantic_hash": "e0c8a932cc82d3068837dc6605be28bc"
+  },
+  ".claude/skills/brensan-component-entry/SKILL.md": {
+    "mtime": 1792559986.291639,
+    "seen": 1793620050.7296271,
+    "ast_hash": "5529be25f54a17db8ca35eb700221098",
+    "semantic_hash": "5529be25f54a17db8ca35eb700221098"
+  },
+  ".claude/skills/brensan-component-entry/references/tables.md": {
+    "mtime": 1792559986.3479426,
+    "seen": 1793620050.729628,
+    "ast_hash": "c20443d80f92592c775ece729585d54a",
+    "semantic_hash": "c20443d80f92592c775ece729585d54a"
+  },
+  "CLAUDE.md": {
+    "mtime": 1793605692.740446,
+    "seen": 1793620050.7296293,
+    "ast_hash": "3ca5bf100db930855bb339d14fb7961f",
+    "semantic_hash": "3ca5bf100db930855bb339d14fb7961f"
+  },
+  "db_divergence_report.md": {
+    "mtime": 1788952743.7105086,
+    "seen": 1793620050.7296302,
+    "ast_hash": "b7016152a0f995be5243c891aaf9c106",
+    "semantic_hash": "b7016152a0f995be5243c891aaf9c106"
+  },
+  "docs/Brensan_KiCad_DB_Kullanici_Kitapcigi.html": {
+    "mtime": 1792397658.5877848,
+    "seen": 1793620050.7296314,
+    "ast_hash": "3a8b4ef32135db5b53c68fe314aaed7a",
+    "semantic_hash": "3a8b4ef32135db5b53c68fe314aaed7a"
+  },
+  "docs/password_reset.md": {
+    "mtime": 1792762031.7170432,
+    "seen": 1793620050.7296326,
+    "ast_hash": "6251cd07940c0178446820e5ef5f8750",
+    "semantic_hash": "6251cd07940c0178446820e5ef5f8750"
+  },
+  "requirements.txt": {
+    "mtime": 1793619417.9276557,
+    "seen": 1793620050.7296338,
+    "ast_hash": "49411517991ffa5cfd9ba9f03c5cdecf",
+    "semantic_hash": "49411517991ffa5cfd9ba9f03c5cdecf"
+  },
+  "tests/fixtures/lcsc_manager/README.md": {
+    "mtime": 1793618132.9156802,
+    "seen": 1793620050.7296348,
+    "ast_hash": "b07bd84d00652f84c6978c1f59e3d7bc",
+    "semantic_hash": "b07bd84d00652f84c6978c1f59e3d7bc"
+  },
+  "third_party/lcsc_manager/NOTICE.md": {
+    "mtime": 1793616836.56639,
+    "seen": 1793620050.7296362,
+    "ast_hash": "5539afce773953dbca6adec3e50c1ff2",
+    "semantic_hash": "5539afce773953dbca6adec3e50c1ff2"
+  },
+  "third_party/lcsc_manager/README.brensan.md": {
+    "mtime": 1793617690.8782487,
+    "seen": 1793620050.7296371,
+    "ast_hash": "884f28dae3e5f9b74201a68954266605",
+    "semantic_hash": "884f28dae3e5f9b74201a68954266605"
+  },
+  "docs/Brensan_KiCad_DB_Kullanici_Kitapcigi.pdf": {
+    "mtime": 1792397661.5817027,
+    "seen": 1793620050.729638,
+    "ast_hash": "fedb0219519576ba1a6e134f1695ba76",
+    "semantic_hash": "fedb0219519576ba1a6e134f1695ba76"
+  }
+}
